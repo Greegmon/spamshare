@@ -19,11 +19,14 @@ def Execute(cookie, post, share_count, delay):
 	}
 	class Share:
 		async def get_token(self, session):
-			head['cookie'] = cookie
-			async with session.get('https://business.facebook.com/content_management', headers=head) as response:
-				data = await response.text()
-				access_token = 'EAAG' + re.search('EAAG(.*?)","', data).group(1)
-				return access_token, head['cookie']
+			try:
+				head['cookie'] = cookie
+				async with session.get('https://business.facebook.com/content_management', headers=head) as response:
+					data = await response.text()
+					access_token = 'EAAG' + re.search('EAAG(.*?)","', data).group(1)
+					return access_token, head['cookie']
+			except Exception as er:
+				st.error(":red-background[blocked] Cookie blocked")
 		async def share(self, session, token, cookie):
 			ji = {
 				"user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36",
