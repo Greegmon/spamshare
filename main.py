@@ -105,7 +105,7 @@ def conver_to_puke(user, passw):
 		if "c_user" in jopl:
 			return {"a":True,"b": cookie}
 		elif "checkpoint" in jopl:
-			return {"a":False,"b":":red-background[error] Account checkpoint"
+			return {"a":False,"b":":red-background[error] Account checkpoint"}
 		else:
 			return {"a":False,"b":":red-background[error] Invalid username or password"}
 	except Exception as ed:
